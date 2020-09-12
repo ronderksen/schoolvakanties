@@ -11,7 +11,7 @@
     "express": "^4.17.1",
     "ical-generator": "^1.10.0",
     "node-cache": "^5.1.0",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.4",

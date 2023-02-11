@@ -14,7 +14,7 @@
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4",
+    "nodemon": "^2.0.20",
     "vercel": "^19.0.1"
   }
 }

@@ -58,7 +58,7 @@ export default async (req, res) => {
     const regionCal = await getData(region);
     res.writeHead(200, {
         headers: {
-            "Cache-Control": "max-age=3628800", // 1 week
+            "Cache-Control": "max-age=0,s-maxage=3628800", // 1 week
             'Content-Disposition': `attachment; filename="regio-${region}.ics"`,
         }
     })

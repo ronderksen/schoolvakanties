@@ -1,6 +1,6 @@
-const ical = require("ical-generator");
-const NodeCache = require("node-cache");
-const fetch = require("node-fetch");
+import ical from "ical-generator";
+import NodeCache from "node-cache";
+import fetch from "node-fetch";
 
 const cache = new NodeCache({
     stdTTL: 60 * 60 * 60 * 24 * 7
@@ -9,10 +9,10 @@ const dataSourceUrl =
     "https://opendata.rijksoverheid.nl/v1/sources/rijksoverheid/infotypes/schoolholidays?output=json";
 
 async function parseData(json, requestedRegion, cal) {
-    json.forEach(({ content }) => {
+    json.forEach(({content}) => {
         const schoolyear = content[0].schoolyear;
-        return content[0].vacations.forEach(({ type, regions }) => {
-            const reg = regions.find(({ region }) => region === requestedRegion || region === "heel Nederland");
+        return content[0].vacations.forEach(({type, regions}) => {
+            const reg = regions.find(({region}) => region === requestedRegion || region === "heel Nederland");
             if (reg) {
                 cal.createEvent({
                     start: reg.startdate,
@@ -49,7 +49,7 @@ function getData(region) {
     return ical(data);
 }
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
     const {
         query: {
             region
@@ -57,5 +57,12 @@ module.exports = async (req, res) => {
     } = req;
 
     const regionCal = await getData(region);
-    regionCal.serve(res);
+    res.writeHead(200, {
+        headers: {
+            "Cache-Control": "max-age=3628800", // 1 week
+            'Content-Disposition': `attachment; filename="regio-${region}.ics"`,
+        }
+    })
+
+    res.end(JSON.stringify(regionCal));
 }

@@ -2,19 +2,18 @@
   "name": "schoolvakanties",
   "version": "1.0.0",
   "description": "",
-  "scripts": {
-  },
+  "scripts": {},
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2",
-    "ical-generator": "^1.10.0",
-    "node-cache": "^5.1.0",
-    "node-fetch": "^2.6.7"
+    "express": "^5.2.1",
+    "ical-generator": "^10.0.0",
+    "node-cache": "^5.1.2",
+    "node-fetch": "^3.3.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.21",
-    "vercel": "^19.0.1"
+    "nodemon": "^3.1.11",
+    "vercel": "^50.10.0"
   }
 }

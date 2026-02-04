@@ -1,6 +1,5 @@
 import ical from "ical-generator";
 import NodeCache from "node-cache";
-import fetch from "node-fetch";
 
 const cache = new NodeCache({
     stdTTL: 60 * 60 * 60 * 24 * 7

@@ -2,7 +2,7 @@ import ical from "ical-generator";
 import NodeCache from "node-cache";
 
 const cache = new NodeCache({
-    stdTTL: 60 * 60 * 60 * 24 * 7
+    stdTTL: 60 * 60 * 24 * 7
 });
 const dataSourceUrl =
     "https://opendata.rijksoverheid.nl/v1/sources/rijksoverheid/infotypes/schoolholidays?output=json";
@@ -56,12 +56,10 @@ export default async (req, res) => {
     } = req;
 
     const regionCal = await getData(region);
-    res.writeHead(200, {
-        headers: {
-            "Cache-Control": "max-age=0,s-maxage=3628800", // 1 week
-            'Content-Disposition': `attachment; filename="regio-${region}.ics"`,
-        }
-    })
+    res.statusCode = 200;
+    res.setHeader("Content-type", "text/calendar; charset=utf-8");
+    res.setHeader("Content-Disposition", `attachment; filename="regio-${region}.ics"`);
+    res.setHeader("Cache-Control", "max-age=0,s-maxage=3628800"); // 1 week
 
     res.end(JSON.stringify(regionCal));
 }

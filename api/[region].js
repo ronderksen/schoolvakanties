@@ -63,5 +63,5 @@ export default async (req, res) => {
     res.setHeader("Content-Disposition", `attachment; filename="regio-${region}.ics"`);
     res.setHeader("Cache-Control", `max-age=0,s-maxage=${ttl}, stale-while-revalidate=86400`); // 1 week
 
-    res.end(JSON.stringify(regionCal));
+    res.end(regionCal.toString());
 }

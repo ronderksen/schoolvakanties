@@ -7,7 +7,7 @@ const cache = new NodeCache({
     stdTTL: ttl
 });
 const dataSourceUrl =
-    "https://opendata.rijksoverheid.nl/v1/sources/rijksoverheid/infotypes/schoolholidays?output=json";
+    "https://opendata.rijksoverheid.nl/v1/infotypes/schoolholidays";
 
 async function parseData(json, requestedRegion, cal) {
     json.forEach(({content}) => {
